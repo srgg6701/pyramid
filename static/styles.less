@@ -2,8 +2,19 @@ main{
   margin: auto;
   max-width: 640px;
 }
+menu{
+  margin:0;
+  padding:0;
+  li{
+    &:first-child +li.element-divider.wide{
+      width: 100% !important;
+    }
+  }
+}
 .navigation-bar-content{
   li{
+    display: table-cell !important;
+    float: none !important;
     &:hover{
       a{
         color: white;

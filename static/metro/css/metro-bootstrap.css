@@ -4107,7 +4107,7 @@ a {
 .metro .navbar .navbar-content .element-divider {
   padding: 15px 0;
   line-height: 15px;
-  width: 1px !important;
+  /*width: 1px !important;*/
   border-left: 1px #ccc solid;
   opacity: .3;
   position: relative;
