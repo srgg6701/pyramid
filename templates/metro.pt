@@ -32,6 +32,8 @@
                         <li class="element"><a href="workers">Workers</a></li>
                         <li class="element-divider"></li>
                         <li class="element"><a href="shedule">Shedule</a></li>
+                        <li class="element-divider"></li>
+                        <li class="element"><a href="gate">Star gate</a></li>
                     </menu>
                 </nav>
             </nav>
@@ -39,7 +41,9 @@
                 <h3>Content comes here:</h3>
                 ${content}
             <hr>
-            {{test}}
+            <div ng-bind="test"></div>
+            <hr>
+            <div ng-include='"/static/tmpl/default.html"'></div>
         </main>
     </body>
 </html>
