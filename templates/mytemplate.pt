@@ -14,7 +14,7 @@
     <link href="//oss.maxcdn.com/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="${request.static_url('testpyramid:static/theme.css')}" rel="stylesheet">
+    <link href="${request.static_url('testpyramid:static/default/theme.css')}" rel="stylesheet">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -34,7 +34,7 @@
           <div class="col-md-10">
             <div class="content">
               <h1><span class="font-semi-bold">Pyramid</span> <span class="smaller">starter template</span></h1>
-              <p class="lead">Welcome to <span class="font-normal">${project}</span>, an&nbsp;application generated&nbsp;by<br>the <span class="font-normal">Pyramid Web Framework</span>.</p>
+              <p class="lead">Welcome to <span class="font-normal">Template!</span>, an&nbsp;application generated&nbsp;by<br>the <span class="font-normal">Pyramid Web Framework</span>.</p>
             </div>
           </div>
         </div>
