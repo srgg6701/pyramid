@@ -18,8 +18,10 @@
     <script src="${request.static_url('testpyramid:static/metro/jquery.min.js')}"></script>
     <script src="${request.static_url('testpyramid:static/metro/jquery.widget.min.js')}"></script>
     <script src="${request.static_url('testpyramid:static/metro/metro.min.js')}"></script>
+    <script src="${request.static_url('testpyramid:static/js/controller.js')}"></script>
+    <script src="${request.static_url('testpyramid:static/libs/angular.min.js')}"></script>
   </head>
-    <body class="metro">
+    <body class="metro" ng-controller="mainController" ng-app="">
         <main>
             <nav class="navigation-bar light clearfix">
                 <nav class="navigation-bar-content place-right">
@@ -36,6 +38,8 @@
             <h1>Hello!</h1>
                 <h3>Content comes here:</h3>
                 ${content}
+            <hr>
+            {{test}}
         </main>
     </body>
 </html>
