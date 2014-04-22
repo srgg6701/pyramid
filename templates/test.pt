@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="${request.locale_name}">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="pyramid web application test">
+    <meta name="author" content="srgg6701">
+  </head>
+  <body>
+  <h1>Hello, Amigo! Here I am.</h1>
+  </body>
+</html>
