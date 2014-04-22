@@ -21,6 +21,13 @@
   </head>
     <body class="metro">
         <main>
+            <nav class="navigation-bar light clearfix">
+                <nav class="navigation-bar-content place-right">
+                    <li class="element"><a href="/">Home</a></li>
+                    <li class="element-divider"><a href="workers">Workers</a></li>
+                    <li class="element"><a href="shedule">Shedule</a></li>
+                </nav>
+            </nav>
             <h1>Hello!</h1>
                 <h3>Content comes here:</h3>
                 ${content}
