@@ -50,3 +50,28 @@ table{
     padding: 4px 6px;
   }
 }
+.tdActions{
+  background-repeat: no-repeat;
+  background-position: 2px 3px;
+  opacity: 0.5;
+  width: 20px;
+}
+th:nth-child(5),
+td:nth-child(5){
+  background-image: url(pix/edit.png);
+  .tdActions;
+}
+th:nth-child(6),
+td:nth-child(6){
+  background: url(pix/trash.png) no-repeat 2px 3px;
+  .tdActions
+}
+td{
+  &:nth-child(5),
+  &:nth-child(6){
+    &:hover{
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+}

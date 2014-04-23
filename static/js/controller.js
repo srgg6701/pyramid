@@ -16,13 +16,13 @@ function mainController($scope){
         {address:'http://awesomeserver.org', port:80, ssl:true},
         {address:'http://megarobust.net', port:3137, ssl:true}
     ];
-}
 
-function testAjax(){
-    console.log('Making test...');
-    $.getJSON('http://127.0.0.1:6543/data.json', function(data){
-        $.each(data, function(key, val){
-            console.log(key+':'+val);
-        });
-    });
+    $scope.writeDB = function(){
+        var data = {
+            first_name:'Srgg',
+            last_name:'SrggNext'
+        };
+        window.localStorage.setItem('test_data', JSON.stringify(data));
+        console.dir(data);
+    }
 }

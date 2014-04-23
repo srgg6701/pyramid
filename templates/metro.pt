@@ -33,7 +33,7 @@
                         <li class="element-divider"></li>
                         <li class="element"><a href="javascript:void(0)" ng-click="goJS()">JS/jQuery</a></li>
                         <li class="element-divider"></li>
-                        <li class="element"><a href="javascript:testAjax()">Test AJAX</a></li>
+                        <li class="element"><a href="javascript:void(0)" ng-click="writeDB()">Test DB</a></li>
                     </menu>
                 </nav>
             </nav>
@@ -49,16 +49,16 @@
                             <th>Address</th>
                             <th>Port</th>
                             <th>SSL</th>
-                            <th>Edit</th>
-                            <th>Remove</th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         <tr ng-repeat="(sIndex, serv) in servdata">
                             <td>{{sIndex+1}}</td>
                             <td>{{serv.address}}</td>
                             <td>{{serv.port}}</td>
                             <td>{{serv.ssl}}</td>
-                            <td>edit</td>
-                            <td>remove</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
                         </tr>
                     </table>
                 </div>
