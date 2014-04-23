@@ -5,7 +5,9 @@ function getTable(table){
 
 function addServer(button){
     var tBody = getTable();
-    var newTr = $('<tr/>');
+    var newTr = $('<tr/>',{
+        onclick:'handleServer(event.target, true)'
+    });
 
     $(newTr).append('<td>'+$('tr',tBody).size()+'</td>');
     $(newTr).append('<td><input type="text" name="new_server_address"></td>');
@@ -18,6 +20,7 @@ function addServer(button){
     switchButtons(true);
     $(newTr).fadeIn(600);
 }
+// if click the button bellow
 function saveServer(){
     var BTable = getTable();
     $('td.black').each(function(index,element){
@@ -37,15 +40,27 @@ function saveServer(){
     });
     console.dir(Data);
     var new_address=$('input[name="new_server_address"]'),
-        new_port=$('input[name="new_server_port"]');
+        new_port=$('input[name="new_server_port"]'),
+        new_ssl=$('input[name="new_server_ssl"]');
     if(new_address.length&&new_port.length){
-        if($(new_address).val()&&$(new_port).val()){
+        var address=$(new_address).val(),
+            port=$(new_port).val(),
+            ssl=$(new_ssl)[0].checked;
+        if(address&&port){
             Data['new_server']={};
-            Data['new_server']['address']=$(new_address).val();
-            Data['new_server']['port']=$(new_port).val();
-            Data['new_server']['ssl']=$('input[name="new_server_ssl"]')[0].checked;
+            Data['new_server']['address']=address;
+            Data['new_server']['port']=port;
+            Data['new_server']['ssl']=ssl;
+            $(new_address).parent('td').html(address);
+            $(new_port).parent('td').html(port);
+            var tdSsl=$(new_ssl).parent('td');
+            $(tdSsl).html((ssl)? 'true':'false');
+            $(tdSsl).next().removeClass('nopic')
+                    .next().removeClass('nopic');
+            switchButtons();
         }
     }
+
     console.dir(Data);
 }
 function cancelServer(){
@@ -53,12 +68,15 @@ function cancelServer(){
     $(lastTr).fadeOut(600,$(lastTr).remove());
     switchButtons();
 }
-function handleServer(element){
+function handleServer(element, remove){
     if(element.tagName.toUpperCase()=='TD'){
         if($(element).index()==4)
             editServer(element);
-        if($(element).index()==5)
+        if($(element).index()==5){
             removeServer(element);
+            // if has been removing the new server
+            if(remove) cancelServer();
+        }
     }
 }
 function editServer(td){
