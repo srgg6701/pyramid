@@ -33,7 +33,7 @@
                         <li class="element-divider"></li>
                         <li class="element"><a href="javascript:void(0)" ng-click="goJS()">JS/jQuery</a></li>
                         <li class="element-divider"></li>
-                        <li class="element"><a href="javascript:void(0)" ng-click="goJS()">JS/jQuery</a></li>
+                        <li class="element"><a href="javascript:testAjax()">Test AJAX</a></li>
                     </menu>
                 </nav>
             </nav>

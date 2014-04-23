@@ -17,3 +17,12 @@ function mainController($scope){
         {address:'http://megarobust.net', port:3137, ssl:true}
     ];
 }
+
+function testAjax(){
+    console.log('Making test...');
+    $.getJSON('http://127.0.0.1:6543/data.json', function(data){
+        $.each(data, function(key, val){
+            console.log(key+':'+val);
+        });
+    });
+}
