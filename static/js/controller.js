@@ -11,15 +11,12 @@ function mainController($scope){
         $scope.section.state = "task";
     };
     $scope.servdata=[
-        {address:'http://127.0.0.1', port:8888, ssl:true},
-        {address:'http://super.serv.com', port:3030, ssl:false},
-        {address:'http://192.168.1.9', port:443, ssl:true},
-        {address:'http://awesomeserver.org', port:80, ssl:true},
-        {address:'http://megarobust.net', port:3137, ssl:true}
+        {id:1,address:'http://127.0.0.1', port:8888, ssl:true},
+        {id:3,address:'http://super.serv.com', port:3030, ssl:false},
+        {id:4,address:'http://192.168.1.9', port:443, ssl:true},
+        {id:6,address:'http://awesomeserver.org', port:80, ssl:true},
+        {id:7,address:'http://megarobust.net', port:3137, ssl:true}
     ];
-    /*$scope.addServer = function(){
-        console.log('adding server...');
-    }*/
     $scope.writeDB = function(){
         var data = {
             first_name:'Srgg',
@@ -28,11 +25,7 @@ function mainController($scope){
         window.localStorage.setItem('test_data', JSON.stringify(data));
         console.dir(data);
     };
-    $scope.editServer = function(event){
-        editServer(event.currentTarget);
-    }
-    $scope.removeServer = function(event){
-        console.dir(event.currentTarget);
-        removeServer(event.currentTarget);
-    }
+    $scope.handleServer = function(event){
+        handleServer(event.target);
+    };
 }

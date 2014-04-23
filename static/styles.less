@@ -1,8 +1,11 @@
-h3{
-  margin: 20px 0 !important;
+.black{
+  opacity: 1;
 }
 button.hidden{
   display: none;
+}
+h3{
+  margin: 20px 0 !important;
 }
 main{
   margin: auto;
@@ -86,7 +89,9 @@ table{
 .tdActions{
   background-repeat: no-repeat;
   background-position: 2px 3px;
-  opacity: 0.5;
+  &:not(.black){
+    opacity: 0.5;
+  }
   width: 20px;
 }
 th:nth-child(5),
