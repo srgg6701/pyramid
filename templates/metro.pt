@@ -32,6 +32,8 @@
                         <li class="element"><a href="javascript:void(0)" ng-click="goAngular()">Angular</a></li>
                         <li class="element-divider"></li>
                         <li class="element"><a href="javascript:void(0)" ng-click="goJS()">JS/jQuery</a></li>
+                        <li class="element-divider"></li>
+                        <li class="element"><a href="javascript:void(0)" ng-click="goJS()">JS/jQuery</a></li>
                     </menu>
                 </nav>
             </nav>
@@ -39,11 +41,28 @@
                 <div ng-switch-when="home">
                     <div ng-include='"/static/tmpl/default.html"'></div>
                 </div>
-                <hr>
+                <div ng-switch-when="task">
+                    <h3>Servers</h3>
+                    <table>
+                        <tr>
+                            <th>#</th>
+                            <th>Address</th>
+                            <th>Port</th>
+                            <th>SSL</th>
+                            <th>Edit</th>
+                            <th>Remove</th>
+                        </tr>
+                        <tr ng-repeat="(sIndex, serv) in servdata">
+                            <td>{{sIndex+1}}</td>
+                            <td>{{serv.address}}</td>
+                            <td>{{serv.port}}</td>
+                            <td>{{serv.ssl}}</td>
+                            <td>edit</td>
+                            <td>remove</td>
+                        </tr>
+                    </table>
+                </div>
             </section>
-            <div>{{content_data}}</div>
-            <hr>
-
         </main>
     </body>
 </html>
