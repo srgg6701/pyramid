@@ -2,11 +2,12 @@ function mainController($scope){
     $scope.test="Angular test comes here!";
     //$scope.some_data="Do you see any data?";
     $scope.goAngular = function(){
-        $scope.content_data = "Here are lots of workers!";
+        //$scope.content_data = "Here are lots of workers!";
+        //makeServers();
         $scope.section.state = "task";
     };
     $scope.goJS = function(){
-        $scope.content_data = "Here is some shedule...";
+        //$scope.content_data = "Here is some shedule...";
         $scope.section.state = "task";
     };
     $scope.servdata=[
@@ -16,7 +17,9 @@ function mainController($scope){
         {address:'http://awesomeserver.org', port:80, ssl:true},
         {address:'http://megarobust.net', port:3137, ssl:true}
     ];
-
+    /*$scope.addServer = function(){
+        console.log('adding server...');
+    }*/
     $scope.writeDB = function(){
         var data = {
             first_name:'Srgg',
@@ -24,5 +27,12 @@ function mainController($scope){
         };
         window.localStorage.setItem('test_data', JSON.stringify(data));
         console.dir(data);
+    };
+    $scope.editServer = function(event){
+        editServer(event.currentTarget);
+    }
+    $scope.removeServer = function(event){
+        console.dir(event.currentTarget);
+        removeServer(event.currentTarget);
     }
 }

@@ -1,6 +1,9 @@
 h3{
   margin: 20px 0 !important;
 }
+button.hidden{
+  display: none;
+}
 main{
   margin: auto;
   max-width: 640px;
@@ -31,6 +34,18 @@ menu{
    }
   }
 }
+#tableWrapper{
+  display: table-cell;
+  button{
+    margin-top: 6px;
+    &:hover{
+      background-color: #D8E6F9;
+    }
+    &.place-left{
+      background-color: #A4A4A4;
+    }
+  }
+}
 table{
   border: solid 2px #ccc;
   tbody tr{
@@ -38,10 +53,25 @@ table{
       background-color: #eee;
       border-bottom: solid 1px #999;
     }
-    td:first-child{
-      text-align: right;
-      &+td +td{
+    td{
+      &:first-child{
+        text-align: right;
+      }
+      &:nth-child(2){
+        input{
+          width: 100%;
+        }
+      }
+      &:nth-child(3),
+      &:nth-child(4){
         text-align: center;
+      }
+      &:nth-child(3){
+        width:60px;
+        input{
+          text-align: center;
+          width: 48px;
+        }
       }
     }
   }
@@ -49,6 +79,9 @@ table{
     border-bottom: dotted 1px #ccc;
     padding: 4px 6px;
   }
+}
+#tblServers{
+  min-width: 320px;
 }
 .tdActions{
   background-repeat: no-repeat;
@@ -58,20 +91,26 @@ table{
 }
 th:nth-child(5),
 td:nth-child(5){
-  background-image: url(pix/edit.png);
+  &:not(.nopic){
+    background-image: url(pix/edit.png);
+  }
   .tdActions;
 }
 th:nth-child(6),
 td:nth-child(6){
-  background: url(pix/trash.png) no-repeat 2px 3px;
-  .tdActions
+  &:not(.nopic){
+    background: url(pix/trash.png) no-repeat 2px 3px;
+  }
+  tr:not(.new) & {
+    .tdActions
+  }
 }
 td{
   &:nth-child(5),
   &:nth-child(6){
     &:hover{
       cursor: pointer;
-      opacity: 1;
+      opacity: 1 !important;
     }
   }
 }

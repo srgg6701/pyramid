@@ -43,7 +43,8 @@
                 </div>
                 <div ng-switch-when="task">
                     <h3>Servers</h3>
-                    <table>
+                    <div id="tableWrapper">
+                        <table id="tblServers">
                         <tr>
                             <th>#</th>
                             <th>Address</th>
@@ -57,12 +58,17 @@
                             <td>{{serv.address}}</td>
                             <td>{{serv.port}}</td>
                             <td>{{serv.ssl}}</td>
-                            <td>&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td ng-click="editServer($event)">&nbsp;</td>
+                            <td ng-click="removeServer($event)">&nbsp;</td>
                         </tr>
                     </table>
+                        <button data-group="first" class="place-right" onclick="addServer(this)">Add server</button>
+                        <button data-group="second" class="place-left hidden" onclick="cancelServer(this)">cancel</button>
+                        <button data-group="second" class="place-right hidden" onclick="saveServer(this)">Save server</button>
+                    </div>
                 </div>
             </section>
         </main>
+        <script src="${request.static_url('testpyramid:static/js/actions.js')}"></script>
     </body>
 </html>
