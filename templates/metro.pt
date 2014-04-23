@@ -22,11 +22,11 @@
     <script src="${request.static_url('testpyramid:static/libs/angular.min.js')}"></script>
   </head>
     <body class="metro" ng-controller="mainController" ng-app="">
-        <main>
+        <main ng-init="section.state='home'">
             <nav class="navigation-bar light clearfix">
                 <nav class="navigation-bar-content place-right">
                     <menu сlass="clearfix">
-                        <li class="element"><a href="/">Home</a></li>
+                        <li class="element"><a href="javascript:void(0)" ng-click="section.state='home'">Home</a></li>
                         <li class="element-divider wide"></li>
                         <li class="element-divider"></li>
                         <li class="element"><a href="javascript:void(0)" ng-click="goAngular()">Angular</a></li>
@@ -35,12 +35,15 @@
                     </menu>
                 </nav>
             </nav>
-            <h3>Choose the approach to use:</h3>
-                <div>{{content_data}}</div>
+            <section ng-switch="section.state">
+                <div ng-switch-when="home">
+                    <div ng-include='"/static/tmpl/default.html"'></div>
+                </div>
+                <hr>
+            </section>
+            <div>{{content_data}}</div>
             <hr>
-            <div ng-bind="test"></div>
-            <hr>
-            <div ng-include='"/static/tmpl/default.html"'></div>
+
         </main>
     </body>
 </html>
