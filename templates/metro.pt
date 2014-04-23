@@ -29,17 +29,14 @@
                         <li class="element"><a href="/">Home</a></li>
                         <li class="element-divider wide"></li>
                         <li class="element-divider"></li>
-                        <li class="element"><a href="workers">Workers</a></li>
+                        <li class="element"><a href="javascript:void(0)" ng-click="goAngular()">Angular</a></li>
                         <li class="element-divider"></li>
-                        <li class="element"><a href="shedule">Shedule</a></li>
-                        <li class="element-divider"></li>
-                        <li class="element"><a href="gate">Star gate</a></li>
+                        <li class="element"><a href="javascript:void(0)" ng-click="goJS()">JS/jQuery</a></li>
                     </menu>
                 </nav>
             </nav>
-            <h1>Hello!</h1>
-                <h3>Content comes here:</h3>
-                ${content}
+            <h3>Choose the approach to use:</h3>
+                <div>{{content_data}}</div>
             <hr>
             <div ng-bind="test"></div>
             <hr>
