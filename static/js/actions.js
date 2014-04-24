@@ -43,7 +43,6 @@ function handleServer(element, remove){
  * Switch between inputs/tds
  */
 function handleServerRowState(td){
-    //console.dir();
     var TDs         = $(td).parent('tr').find('td'),
         sId         = $(TDs).eq(0).attr('data-id'),
         tAddress    = $(TDs).eq(1),
@@ -69,7 +68,6 @@ function handleServerRowState(td){
  * Remove server from table and DB
  */
 function removeServer(td){
-    //console.dir(td);
     var Tr = $(td).parent('tr');
     $(Tr).fadeOut(300, function(){
         $(Tr).remove();
@@ -88,25 +86,20 @@ function saveServers(td,remove){
         //{id:1,address:'http://127.0.0.1', port:8888, ssl:true},
         var servId, lastId=0;
         // go through table to get Last id:
-        //console.dir($('tr:not(:nth-child(1))',BTable));
         $('tr:not(:nth-child(1))',BTable).each(function(index,element){
             var TDs = $('td',element);
             if(servId = $(TDs).eq(0).attr('data-id')){
                 if(parseInt(servId)>lastId) lastId = servId;
             }
-        }); //console.log('saveServers()->Data'); console.dir(Data);
+        });
         var new_address=$('input[name="new_server_address"]'),
             new_port=$('input[name="new_server_port"]'),
             new_ssl=$('input[name="new_server_ssl"]');
-            //console.log('new_address.length: '+new_address.length+', new_port.length: '+new_port.length+', new_ssl.length: '+new_ssl.length);
         var address=$(new_address).val(),
             port=$(new_port).val(),
             ssl=$(new_ssl)[0].checked.toString();
-            //console.log('address: '+address+', port: '+port+', ssl: '+ssl);
         if(address&&port){
-            console.log('lastId before = '+lastId);
             lastId++; // imitates new id. Not for a real app!
-            console.log('lastId after = '+lastId);
             db[lastId]={};
             db[lastId]['address']=address;
             db[lastId]['port']=port;
@@ -126,11 +119,10 @@ function saveServers(td,remove){
         }else{
             alert('The address and port are necessary both.');
         }
-        console.log('%cData before saving:','color:green');console.dir(db);
     }else{ // click by "pencil" (i.e. - TD)
         var recordId = $(td).parent('tr').find('td').eq(0).attr('data-id');
         for(var i in db){
-            if(i==recordId){ // up to the moment fields are converted to html
+            if(i==recordId){ // up to this point fields are converted to html
                 if(remove){
                     delete db[i];
                 }else{

@@ -6,7 +6,6 @@ function mainController($scope){
         $scope.section.state = "task";
     };
     var db = JSON.parse(window.localStorage.getItem('servers'));
-    console.log('%cData Base:', 'color:blue'); console.dir(db);
     // extract data from DB and push it into local scope
     if(db){
         $scope.servdata={};
@@ -20,7 +19,7 @@ function mainController($scope){
             };
             index++;
         }
-    }   console.log('%cservdata:', 'color:orange'); console.dir($scope.servdata);
+    }
     // pass object to handle data
     $scope.handleServer = function(event){
         handleServer(event.target);
