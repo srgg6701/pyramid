@@ -2,7 +2,6 @@
  * Get the table/tBody with servers data
  */
 function getTable(table){
-   console.log('make servers...');
    return (table)? $('#tblServers'):$('#tblServers tbody');
 };
 /**
@@ -100,6 +99,7 @@ function saveServers(td,remove){
             ssl=$(new_ssl)[0].checked.toString();
         if(address&&port){
             lastId++; // imitates new id. Not for a real app!
+            if(!db) db={};
             db[lastId]={};
             db[lastId]['address']=address;
             db[lastId]['port']=port;
