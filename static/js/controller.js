@@ -9,16 +9,18 @@ function mainController($scope){
     console.log('%cData Base:', 'color:blue'); console.dir(db);
     // extract data from DB and push it into local scope
     if(db){
-        $scope.servdata=[];
+        $scope.servdata={};
         for(var i in db){
             $scope.servdata[i]={
-                id:db[i]['id'],
+                id:i,
                 address:db[i]['address'],
                 port:db[i]['port'],
                 ssl:db[i]['ssl']
             };
         }
-    }/*
+    }
+    console.log('%cservdata:', 'color:orange'); console.dir($scope.servdata);
+    /*
     $scope.servdata=[
         {id:1,address:'http://127.0.0.1', port:8888, ssl:true},
         {id:3,address:'http://super.serv.com', port:3030, ssl:false},

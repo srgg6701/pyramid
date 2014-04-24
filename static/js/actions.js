@@ -13,15 +13,7 @@ function addServer(button){
     var newTr = $('<tr/>',{
         onclick:'handleServer(event.target, true)'
     });
-
-    $(newTr).append('<td>'+$('tr',tBody).size()+'</td>');
-    $(newTr).append('<td><input type="text" name="new_server_address"></td>');
-    $(newTr).append('<td><input type="text" name="new_server_port"></td>');
-    $(newTr).append('<td><input type="checkbox" name="new_server_ssl"></td>');
-    $(newTr).append('<td class="nopic"></td>');
-    $(newTr).append('<td class="nopic"></td>');
-
-    $(tBody).append(newTr);
+    showServerFields(tBody, newTr);
     switchButtons(true);
     $(newTr).fadeIn(600);
 }
@@ -60,6 +52,7 @@ function handleServerState(td){
         $(td).removeClass('black');
         $(tAddress).html($('input',tAddress).val());
         $(tPort).html($('input',tPort).val());
+        saveServers();
     }else{
         $(td).addClass('black').attr('title', 'Apply data changing');
         $(tAddress).html('<input type="text" name="address'+sId+'" value="'+$(tAddress).text()+'">');
@@ -99,7 +92,7 @@ function saveServers(){
             Data[servId]['port']=$(TDs).eq(2).text();
             Data[servId]['ssl']=$(TDs).eq(3).text();
         }
-    }); console.dir(Data);
+    }); console.log('saveServers()->Data'); console.dir(Data);
     var new_address=$('input[name="new_server_address"]'),
         new_port=$('input[name="new_server_port"]'),
         new_ssl=$('input[name="new_server_ssl"]');
@@ -107,6 +100,7 @@ function saveServers(){
         var address=$(new_address).val(),
             port=$(new_port).val(),
             ssl=$(new_ssl)[0].checked;
+            console.log('address: '+address+', port: '+port+', ssl: '+ssl);
         if(address&&port){
             lastId++; // imitates new id. Not for a real app!
             Data[lastId]={};
@@ -121,12 +115,12 @@ function saveServers(){
                     .next().removeClass('nopic');
             switchButtons();
         }
-    }
+    }   console.log('%cData before saving:','color:green');console.dir(Data);
     window.localStorage.setItem('servers',JSON.stringify(Data));
-    //var db
-    console.dir(Data);
 }
-//
+/**
+ * Switch between buttons depending current state
+ */
 function switchButtons(first){
     var second;
     if(first) {
@@ -139,4 +133,16 @@ function switchButtons(first){
     $('[data-group="'+first+'"]').fadeOut(600, function(){
         $('[data-group="'+second+'"]').fadeIn(600);
     });
+}
+/**
+ * Show server filds
+ */
+function showServerFields(tBody, newTr){
+    $(newTr).append('<td>'+$('tr',tBody).size()+'</td>');
+    $(newTr).append('<td><input type="text" name="new_server_address"></td>');
+    $(newTr).append('<td><input type="text" name="new_server_port"></td>');
+    $(newTr).append('<td><input type="checkbox" name="new_server_ssl"></td>');
+    $(newTr).append('<td class="nopic"></td>');
+    $(newTr).append('<td class="nopic"></td>');
+    $(tBody).append(newTr);
 }

@@ -49,7 +49,7 @@
                             <th></th>
                         </tr>
                         <tr ng-repeat="(sIndex, serv) in servdata"  ng-click="handleServer($event)">
-                            <td data-id="{{serv.id}}">{{sIndex+1}}</td>
+                            <td data-id="{{serv.id}}">{{sIndex}}</td>
                             <td>{{serv.address}}</td>
                             <td>{{serv.port}}</td>
                             <td>{{serv.ssl}}</td>
