@@ -22,7 +22,7 @@
     <script src="${request.static_url('testpyramid:static/libs/angular.min.js')}"></script>
   </head>
     <body class="metro" ng-controller="mainController" ng-app="">
-        <main ng-init="section.state='home'">
+        <div id="main" ng-init="section.state='home'">
             <nav class="navigation-bar light clearfix">
                 <nav class="navigation-bar-content place-right wide">
                     <menu сlass="clearfix">
@@ -63,7 +63,7 @@
                     </div>
                 </div>
             </section>
-        </main>
+        </div>
         <script src="${request.static_url('testpyramid:static/js/actions.js')}"></script>
     </body>
 </html>
