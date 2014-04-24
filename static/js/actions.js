@@ -92,10 +92,7 @@ function saveServers(td,remove){
         $('tr:not(:nth-child(1))',BTable).each(function(index,element){
             var TDs = $('td',element);
             if(servId = $(TDs).eq(0).attr('data-id')){
-                if(servId>lastId) lastId = servId; /*Data[servId]={};
-                Data[servId]['address']=$(TDs).eq(1).text();
-                Data[servId]['port']=$(TDs).eq(2).text();
-                Data[servId]['ssl']=$(TDs).eq(3).text(); */
+                if(parseInt(servId)>lastId) lastId = servId;
             }
         }); //console.log('saveServers()->Data'); console.dir(Data);
         var new_address=$('input[name="new_server_address"]'),
@@ -107,7 +104,9 @@ function saveServers(td,remove){
             ssl=$(new_ssl)[0].checked.toString();
             //console.log('address: '+address+', port: '+port+', ssl: '+ssl);
         if(address&&port){
+            console.log('lastId before = '+lastId);
             lastId++; // imitates new id. Not for a real app!
+            console.log('lastId after = '+lastId);
             db[lastId]={};
             db[lastId]['address']=address;
             db[lastId]['port']=port;
