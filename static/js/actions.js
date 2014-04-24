@@ -1,8 +1,13 @@
+/**
+ * Get the table/tBody with servers data
+ */
 function getTable(table){
    console.log('make servers...');
    return (table)? $('#tblServers'):$('#tblServers tbody');
 };
-
+/**
+ * Add new server data to the table
+ */
 function addServer(button){
     var tBody = getTable();
     var newTr = $('<tr/>',{
@@ -20,11 +25,63 @@ function addServer(button){
     switchButtons(true);
     $(newTr).fadeIn(600);
 }
-// if click the button bellow
-function saveServer(){
+/**
+ * cancel editing
+ */
+function cancelServer(){
+    var lastTr=$('tr:last-child',getTable());
+    $(lastTr).fadeOut(600,$(lastTr).remove());
+    switchButtons();
+}
+/**
+ * Switch editing state OR cancel editing
+ */
+function handleServer(element, remove){
+    if(element.tagName.toUpperCase()=='TD'){
+        if($(element).index()==4)
+            handleServerState(element);
+        if($(element).index()==5){
+            removeServer(element);
+            // if has been removing the new server
+            if(remove) cancelServer();
+        }
+    }
+}
+/**
+ * Switch between inputs/tds
+ */
+function handleServerState(td){
+    //console.dir();
+    var TDs = $(td).parent('tr').find('td'),
+        sId = $(TDs).eq(0).attr('data-id'),
+        tAddress = $(TDs).eq(1),
+        tPort = $(TDs).eq(2);
+    if($(td).hasClass('black')){
+        $(td).removeClass('black');
+        $(tAddress).html($('input',tAddress).val());
+        $(tPort).html($('input',tPort).val());
+    }else{
+        $(td).addClass('black').attr('title', 'Apply data changing');
+        $(tAddress).html('<input type="text" name="address'+sId+'" value="'+$(tAddress).text()+'">');
+        $(tPort).html('<input type="text" name="port'+sId+'" value="'+$(tPort).text()+'">');
+    }
+}
+/**
+ * Remove server from table and DB
+ */
+function removeServer(td){
+    //console.dir(td);
+    var Tr = $(td).parent('tr');
+    $(Tr).fadeOut(300,$(Tr).remove());
+}
+/**
+ * if click the button bellow:
+ * Push data from table into Data object and save it into DB
+ */
+function saveServers(){
     var BTable = getTable();
     $('td.black').each(function(index,element){
-        editServer(element);
+        handleServerState(element);
     });
     var Data = {};
     //{id:1,address:'http://127.0.0.1', port:8888, ssl:true},
@@ -37,8 +94,7 @@ function saveServer(){
             Data[servId]['port']=$(TDs).eq(2).text();
             Data[servId]['ssl']=$(TDs).eq(3).text();
         }
-    });
-    console.dir(Data);
+    }); console.dir(Data);
     var new_address=$('input[name="new_server_address"]'),
         new_port=$('input[name="new_server_port"]'),
         new_ssl=$('input[name="new_server_ssl"]');
@@ -59,47 +115,9 @@ function saveServer(){
                     .next().removeClass('nopic');
             switchButtons();
         }
-    }
-
-    console.dir(Data);
+    } console.dir(Data);
 }
-function cancelServer(){
-    var lastTr=$('tr:last-child',getTable());
-    $(lastTr).fadeOut(600,$(lastTr).remove());
-    switchButtons();
-}
-function handleServer(element, remove){
-    if(element.tagName.toUpperCase()=='TD'){
-        if($(element).index()==4)
-            editServer(element);
-        if($(element).index()==5){
-            removeServer(element);
-            // if has been removing the new server
-            if(remove) cancelServer();
-        }
-    }
-}
-function editServer(td){
-    //console.dir();
-    var TDs = $(td).parent('tr').find('td'),
-        sId = $(TDs).eq(0).attr('data-id'),
-        tAddress = $(TDs).eq(1),
-        tPort = $(TDs).eq(2);
-    if($(td).hasClass('black')){
-        $(td).removeClass('black');
-        $(tAddress).html($('input',tAddress).val());
-        $(tPort).html($('input',tPort).val());
-    }else{
-        $(td).addClass('black').attr('title', 'Apply data changing');
-        $(tAddress).html('<input type="text" name="address'+sId+'" value="'+$(tAddress).text()+'">');
-        $(tPort).html('<input type="text" name="port'+sId+'" value="'+$(tPort).text()+'">');
-    }
-}
-function removeServer(td){
-    //console.dir(td);
-    var Tr = $(td).parent('tr');
-    $(Tr).fadeOut(300,$(Tr).remove());
-}
+//
 function switchButtons(first){
     var second;
     if(first) {
