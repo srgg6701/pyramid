@@ -72,7 +72,10 @@ function handleServerState(td){
 function removeServer(td){
     //console.dir(td);
     var Tr = $(td).parent('tr');
-    $(Tr).fadeOut(300,$(Tr).remove());
+    $(Tr).fadeOut(300, function(){
+        $(Tr).remove();
+        saveServers();
+    });
 }
 /**
  * if click the button bellow:
@@ -85,10 +88,12 @@ function saveServers(){
     });
     var Data = {};
     //{id:1,address:'http://127.0.0.1', port:8888, ssl:true},
-    var servId;
+    var servId, lastId=0;
+    // go through table:
     $('tr:not(:nth-child(1))',BTable).each(function(index,element){
         var TDs = $('td',element);
         if(servId = $(TDs).eq(0).attr('data-id')){
+            if(servId>lastId) lastId = servId;
             Data[servId]={};
             Data[servId]['address']=$(TDs).eq(1).text();
             Data[servId]['port']=$(TDs).eq(2).text();
@@ -103,10 +108,11 @@ function saveServers(){
             port=$(new_port).val(),
             ssl=$(new_ssl)[0].checked;
         if(address&&port){
-            Data['new_server']={};
-            Data['new_server']['address']=address;
-            Data['new_server']['port']=port;
-            Data['new_server']['ssl']=ssl;
+            lastId++; // imitates new id. Not for a real app!
+            Data[lastId]={};
+            Data[lastId]['address']=address;
+            Data[lastId]['port']=port;
+            Data[lastId]['ssl']=ssl;
             $(new_address).parent('td').html(address);
             $(new_port).parent('td').html(port);
             var tdSsl=$(new_ssl).parent('td');
@@ -115,7 +121,10 @@ function saveServers(){
                     .next().removeClass('nopic');
             switchButtons();
         }
-    } console.dir(Data);
+    }
+    window.localStorage.setItem('servers',JSON.stringify(Data));
+    //var db
+    console.dir(Data);
 }
 //
 function switchButtons(first){
