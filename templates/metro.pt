@@ -59,7 +59,7 @@
                     </table>
                         <button data-group="first" class="place-right" onclick="addServer(this)">Add server</button>
                         <button data-group="second" class="place-left hidden" onclick="cancelServer(this)">cancel</button>
-                        <button data-group="second" class="place-right hidden" onclick="saveServers(this)">Save server</button>
+                        <button data-group="second" class="place-right hidden" onclick="saveServers('new')">Save server</button>
                     </div>
                 </div>
             </section>

@@ -10,24 +10,17 @@ function mainController($scope){
     // extract data from DB and push it into local scope
     if(db){
         $scope.servdata={};
+        var index=1;
         for(var i in db){
-            $scope.servdata[i]={
+            $scope.servdata[index]={
                 id:i,
                 address:db[i]['address'],
                 port:db[i]['port'],
                 ssl:db[i]['ssl']
             };
+            index++;
         }
-    }
-    console.log('%cservdata:', 'color:orange'); console.dir($scope.servdata);
-    /*
-    $scope.servdata=[
-        {id:1,address:'http://127.0.0.1', port:8888, ssl:true},
-        {id:3,address:'http://super.serv.com', port:3030, ssl:false},
-        {id:4,address:'http://192.168.1.9', port:443, ssl:true},
-        {id:6,address:'http://awesomeserver.org', port:80, ssl:true},
-        {id:7,address:'http://megarobust.net', port:3137, ssl:true}
-    ];*/
+    }   console.log('%cservdata:', 'color:orange'); console.dir($scope.servdata);
     // pass object to handle data
     $scope.handleServer = function(event){
         handleServer(event.target);
