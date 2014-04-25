@@ -1,0 +1,5 @@
+#!C:\Users\srgg6701\Documents\Education\Python+\SamplesWeb\TestPyramid\env27_test\Scripts\python.exe
+# EASY-INSTALL-SCRIPT: 'mako==0.9.1','mako-render'
+__requires__ = 'mako==0.9.1'
+import pkg_resources
+pkg_resources.run_script('mako==0.9.1', 'mako-render')
